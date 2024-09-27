@@ -45,6 +45,7 @@
 		1DF741A32CA65646004343E2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1DF741A52CA65647004343E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DF741A82CA65647004343E2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1DF741B32CA656F1004343E2 /* TimeTap-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TimeTap-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 		1DF741A02CA65646004343E2 /* TimeTap Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				1DF741B32CA656F1004343E2 /* TimeTap-Watch-App-Info.plist */,
 				1DF741A12CA65646004343E2 /* TimeTapApp.swift */,
 				1DF741A32CA65646004343E2 /* ContentView.swift */,
 				1DF741A52CA65647004343E2 /* Assets.xcassets */,
@@ -333,6 +335,7 @@
 				DEVELOPMENT_TEAM = 9F56SB239T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TimeTap-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = TimeTap;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -348,7 +351,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -363,6 +366,7 @@
 				DEVELOPMENT_TEAM = 9F56SB239T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TimeTap-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = TimeTap;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -379,7 +383,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
