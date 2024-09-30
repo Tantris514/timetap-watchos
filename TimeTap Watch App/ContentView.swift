@@ -5,12 +5,10 @@ import AVFoundation
 struct ContentView: View {
     @StateObject private var stopwatch = Stopwatch()
     @State private var crownValue: Double = 0
-    @State private var lastCrownValue: Double = 0
-    @State private var cumulativeCrownRotation: Double = 0
-    @State private var crownInactivityTimer: Timer?
+    @State private var lastSpeakTime: Date = Date(timeIntervalSince1970: 0)
     private let speechSynthesizer = AVSpeechSynthesizer()
+    private let speakCooldown: TimeInterval = 1.5 // 1.5 seconds buffer
     
-    // Added extended runtime session here
     @State private var runtimeSession: WKExtendedRuntimeSession?
     
     var body: some View {
@@ -29,7 +27,6 @@ struct ContentView: View {
         }
         .onDisappear {
             invalidateExtendedRuntimeSession()
-            crownInactivityTimer?.invalidate()
         }
         .gesture(
             ExclusiveGesture(
@@ -64,19 +61,11 @@ struct ContentView: View {
             isContinuous: true,
             isHapticFeedbackEnabled: false
         )
-        .onChange(of: crownValue) { newValue in
-            let delta = newValue - lastCrownValue
-            lastCrownValue = newValue
-            cumulativeCrownRotation += delta
-            
-            crownInactivityTimer?.invalidate()
-            
-            crownInactivityTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                let rotationThreshold: Double = 24.0
-                if abs(cumulativeCrownRotation) >= rotationThreshold {
-                    speakTime()
-                }
-                cumulativeCrownRotation = 0
+        .onChange(of: crownValue) { _ in
+            let currentTime = Date()
+            if currentTime.timeIntervalSince(lastSpeakTime) >= speakCooldown {
+                speakTime()
+                lastSpeakTime = currentTime
             }
         }
     }
@@ -201,7 +190,6 @@ class Stopwatch: NSObject, ObservableObject, WKExtendedRuntimeSessionDelegate {
     
     func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         print("Extended runtime session will expire soon.")
-        // Optionally, you can handle the expiration here
     }
     
     func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
